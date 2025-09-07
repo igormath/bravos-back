@@ -178,6 +178,8 @@ export const saveResultsSchema = z.array(
         athleteName: z.string(),
         modality: z.string(),
         reps: z.number(),
+        gender: z.string(),
+        time: z.number(),
     }),
 );
 
@@ -185,5 +187,12 @@ export const saveResultsService = async (
     data: z.infer<typeof saveResultsSchema>,
 ) => {
     const results = await Resultado.bulkCreate(data);
+    return results;
+};
+
+export const getResultsService = async () => {
+    const results = await Resultado.findAll({
+        order: [["reps", "DESC"]],
+    });
     return results;
 };

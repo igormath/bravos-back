@@ -4,6 +4,7 @@ import { createServer } from "http";
 import { Server as SocketIOServer } from "socket.io";
 import adminRoutes from "./routes/admin.routes";
 import athleteRoutes from "./routes/athleteRoutes";
+import resultsRoutes from "./routes/results.routes";
 
 const app = Express();
 
@@ -66,6 +67,7 @@ const resetTimer = () => {
 // --- Rotas HTTP ---
 app.use("/api/admin", adminRoutes);
 app.use("/api/athlete", athleteRoutes);
+app.use("/api/results", resultsRoutes);
 app.get("/api/admin/get-reps", (req, res) => {
     res.json(Object.fromEntries(competitionState));
 });

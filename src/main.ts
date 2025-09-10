@@ -126,6 +126,7 @@ io.on("connection", (socket) => {
     socket.on("start-timer", startTimer);
     socket.on("stop-timer", stopTimer);
     socket.on("reset-timer", resetTimer);
+    socket.on("pause-timer", stopTimer);
 
     // Evento para o admin atualizar uma repetição
     socket.on(

@@ -8,6 +8,7 @@ interface ResultadoAttributes {
     reps: number;
     gender: string;
     time: number;
+    peso: string;
 }
 
 class Resultado
@@ -20,6 +21,7 @@ class Resultado
     public reps!: number;
     public gender!: string;
     public time!: number;
+    public peso!: string;
 }
 
 Resultado.init(
@@ -47,6 +49,10 @@ Resultado.init(
         },
         time: {
             type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        peso: {
+            type: DataTypes.STRING,
             allowNull: false,
         },
     },

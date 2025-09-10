@@ -154,17 +154,26 @@ export const createAthleteSchema = z.object({
         .string()
         .min(3, "O nome do atleta deve ter pelo menos 3 caracteres."),
     gender: z.enum(["Masculino", "Feminino"]),
+    prova: z.string(),
+    peso: z.string(),
+    time: z.string(),
 });
 
 export const createAthleteService = async (
     data: z.infer<typeof createAthleteSchema>,
 ) => {
-    const { name, gender } = data;
+    const { name, gender, prova, peso, time } = data;
     const existingAthlete = await Athlete.findOne({ where: { name } });
     if (existingAthlete) {
         throw new Error("Atleta já cadastrado.");
     }
-    const newAthlete = await Athlete.create({ name, gender });
+    const newAthlete = await Athlete.create({
+        name,
+        gender,
+        prova,
+        peso,
+        time,
+    });
     return newAthlete;
 };
 
@@ -179,7 +188,8 @@ export const saveResultsSchema = z.array(
         modality: z.string(),
         reps: z.number(),
         gender: z.string(),
-        time: z.number(),
+        time: z.string(),
+        peso: z.string(),
     }),
 );
 

@@ -206,3 +206,11 @@ export const getResultsService = async () => {
     });
     return results;
 };
+
+export const deleteResultService = async (id: number) => {
+    const result = await Resultado.destroy({ where: { id } });
+    if (result === 0) {
+        throw new Error("Resultado não encontrado.");
+    }
+    return { message: "Resultado deletado com sucesso." };
+};

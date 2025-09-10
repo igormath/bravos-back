@@ -1,5 +1,4 @@
 import { DataTypes, Model } from "sequelize";
-import sequelize from "../database/database";
 
 interface AthleteAttributes {
     id?: number;
@@ -17,42 +16,37 @@ class Athlete extends Model<AthleteAttributes> implements AthleteAttributes {
     public prova!: string;
     public peso!: string;
     public time!: string;
-}
 
-Athlete.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-        },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: false,
-        },
-        gender: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        prova: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        peso: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        time: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-    },
-    {
-        sequelize,
-        tableName: "athletes",
-        timestamps: false,
-    },
-);
+    public static getAttributes() {
+        return {
+            id: {
+                type: DataTypes.INTEGER,
+                autoIncrement: true,
+                primaryKey: true,
+            },
+            name: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                unique: false,
+            },
+            gender: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            prova: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            peso: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            time: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+        };
+    }
+}
 
 export default Athlete;

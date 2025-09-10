@@ -1,8 +1,13 @@
 import { Router } from "express";
-import { getResultsController } from "../controllers/results.controller";
+import {
+    getResultsController,
+    deleteResultController,
+} from "../controllers/results.controller";
+import { authMiddleware } from "../middleware/auth";
 
 const resultsRoutes = Router();
 
 resultsRoutes.get("/", getResultsController);
+resultsRoutes.delete("/:id", deleteResultController);
 
 export default resultsRoutes;
